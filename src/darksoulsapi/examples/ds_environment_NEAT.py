@@ -1,3 +1,8 @@
+"""
+Requires neat_python==0.92
+
+"""
+
 from gamestate import GameState
 import cv2 as cv
 import neat
