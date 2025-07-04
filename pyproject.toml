@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "darksoulsapi"
-version = "0.0.2"
+version = "0.0.6"
 authors = [
   { name="Mustafa Bugti", email="mbugti@conncoll.edu" }
 ]
@@ -12,10 +12,10 @@ description = "A Dark Souls: Remastered API for AI research"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "keyboard==0.13.5",
-    "numpy==2.1.3",
-    "opencv-python==4.10.0.84",
-    "pytesseract==0.3.13",
+    "keyboard>=0.13.5",
+    "numpy>=2.1.3",
+    "opencv-python>=4.10.0.84",
+    "pytesseract>=0.3.13",
     "pywin32; sys_platform == 'win32'",
 ]
 classifiers = [
@@ -28,3 +28,10 @@ license-files = ["LICEN[CS]E*"]
 [project.urls]
 Homepage = "https://github.com/joconno2/dsapi"
 Issues = "https://github.com/joconno2/dsapi/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/darksoulsapi"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/darksoulsapi/templates" = "darksoulsapi/templates"
+"src/darksoulsapi/config.toml" = "darksoulsapi/config.toml"
