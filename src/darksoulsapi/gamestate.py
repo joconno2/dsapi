@@ -7,6 +7,7 @@ import keyboard
 import random
 import numpy as np
 import threading
+from pathlib import Path
 
 from .windowcapture import WindowCapture
 from . import key_output
@@ -14,6 +15,9 @@ from . import fitness_function
 from . import feature_matching
 from . import start_game
 from . import game_save
+
+_current_dir = Path(__file__).parent
+_templates_dir = _current_dir / 'templates'
 
 # Functions for interacting with the game window
 # and sending inputs to the game
@@ -85,9 +89,9 @@ class GameState:
 
         pixel_input_gray = cv.cvtColor(pixel_input, cv.COLOR_BGR2GRAY)
 
-        player_dead_template = cv.imread('templates/is_dead.png')
+        player_dead_template = cv.imread(str(_templates_dir / 'is_dead.png'))
         player_dead_template = cv.cvtColor(player_dead_template, cv.COLOR_BGR2GRAY)
-        boss_dead_template = cv.imread('templates/victory_achieved.png')
+        boss_dead_template = cv.imread(str(_templates_dir / 'victory_achieved.png'))
         boss_dead_template = cv.cvtColor(boss_dead_template, cv.COLOR_BGR2GRAY)
 
         self.player_is_dead = feature_matching.template_matching(pixel_input_gray, player_dead_template, threshold=0.75)
@@ -132,7 +136,7 @@ class GameState:
             return False
 
         # Only press 'e' once 'traverse the white light' indication is on the screen
-        template = cv.imread('templates/traverse_the_white_light.png')
+        template = cv.imread(str(_templates_dir / 'traverse_the_white_light.png'))
         self.press_key_on_repeat(template, 0.8, 'e', True, 0.25)
         print("Traversing light.")
 
@@ -141,7 +145,7 @@ class GameState:
         # keyboard.press_and_release('esc')
 
         # Pause until loaded into the boss arena
-        template = cv.imread('templates/health_bar.png')
+        template = cv.imread(str(_templates_dir / 'health_bar.png'))
         self.pause_until_template_match(template, 0.95, 0.25)
         time.sleep(1.0/2)
         print('Entered boss battle.')
@@ -169,7 +173,7 @@ class GameState:
     # This presses 'e' until in-game
     def load_into_game_from_main_menu(self, wait_extra_time=True):
         print("Attempting to load into game.")
-        template = cv.imread('templates/loading_into_game.png')
+        template = cv.imread(str(_templates_dir / 'loading_into_game.png'))
         
         success = self.press_key_on_repeat(template, 0.9, 'e', sleep_time=0.1, timeout=60)
 

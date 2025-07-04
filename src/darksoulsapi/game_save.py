@@ -6,14 +6,17 @@ from pathlib import Path
 import shutil
 import tomllib
 
-with open("config.toml", "rb") as f:
+_current_dir = Path(__file__).parent
+_config_path = _current_dir / "config.toml"
+
+with open(_config_path, "rb") as f:
     config = tomllib.load(f)
 
 home_path = Path.home()
 
 game_save_directory = home_path / config["paths"]["game_save_directory"]
 
-save_file_location = Path("Dark Souls Save Files")
+save_file_location = _current_dir / "Dark Souls Save Files"
 
 save_files = {
     "newgame": "Beginning",

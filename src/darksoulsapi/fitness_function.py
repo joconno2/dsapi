@@ -12,7 +12,9 @@ from . import feature_matching
 tesseract_path = Path.home() / 'AppData' / 'Local' / 'Programs' / 'Tesseract-OCR' / 'tesseract.exe'
 pytesseract.pytesseract.tesseract_cmd = str(tesseract_path)
 
-locked_on_marker = cv.cvtColor(cv.imread('templates/target_template1.png'), cv.COLOR_BGR2GRAY)
+_current_dir = Path(__file__).parent
+_template_path = _current_dir / 'templates' / 'target_template1.png'
+locked_on_marker = cv.cvtColor(cv.imread(str(_template_path)), cv.COLOR_BGR2GRAY)
 
 def get_fitness(screenshot):
     fitness = 0
