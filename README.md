@@ -2,6 +2,9 @@
 
 Dark Souls: Remastered API for Artificial Intelligence Research
 
+# About
+This repository provides an API for Dark Souls: Remastered, enabling the development of AI agents to play the game.
+
 # How To Run
 1. First, update the [Game Settings](#game-settings).
 2. Update your game and save paths in the `config.toml` file.
