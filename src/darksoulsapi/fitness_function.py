@@ -1,13 +1,13 @@
 """
 Functions to evaluate the fitness of an agent.
 """
-
 import cv2 as cv
 import numpy as np
 import pytesseract
 import random
-import feature_matching
 from pathlib import Path
+
+from . import feature_matching
 
 tesseract_path = Path.home() / 'AppData' / 'Local' / 'Programs' / 'Tesseract-OCR' / 'tesseract.exe'
 pytesseract.pytesseract.tesseract_cmd = str(tesseract_path)

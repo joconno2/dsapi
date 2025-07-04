@@ -1,21 +1,19 @@
 """
 Contains essential functions for interacting with the game and keeping the state.
 """
-
-from windowcapture import WindowCapture
 import cv2 as cv
 import time
 import keyboard
-import key_output
 import random
-import fitness_function
-import feature_matching
 import numpy as np
-
-import start_game
-import game_save
 import threading
 
+from .windowcapture import WindowCapture
+from . import key_output
+from . import fitness_function
+from . import feature_matching
+from . import start_game
+from . import game_save
 
 # Functions for interacting with the game window
 # and sending inputs to the game
