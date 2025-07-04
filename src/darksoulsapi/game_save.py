@@ -53,6 +53,19 @@ save_files = {
 # Select a save file
 current_save = save_file_location / save_files["bell_gargoyles"] / "DRAKS0005.sl2"
 
+def set_scenario(save_name):
+    """
+    Pick a save file by name.
+    
+    Args:
+        save_name (str): Name of the save file to load
+    """
+    global current_save
+    if save_name in save_files:
+        current_save = save_file_location / save_files[save_name] / "DRAKS0005.sl2"
+    else:
+        raise ValueError(f"Save file '{save_name}' does not exist. Available saves: {list(save_files.keys())}")
+
 # deletes the 'DRAKS0005.sl2' file in the '1638' folder
 # There may be other save files generated later
 def clear_save():

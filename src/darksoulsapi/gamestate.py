@@ -67,6 +67,15 @@ class GameState:
             self.load_into_game_from_main_menu()
 
         self.start_time = time.time()
+
+    def set_scenario(self, save_name):
+        """
+        Set the scenario by loading a specific save file.
+        
+        Args:
+            save_name (str): Name of the save file to load
+        """
+        game_save.set_scenario(save_name)
         
     def step(self, action):
         # The length that an input is pressed can be modified through the key_delay parameter
