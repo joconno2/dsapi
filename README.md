@@ -1,4 +1,4 @@
-<img src="grey_dsapi_logo.png" width=50%>
+<img src="https://github.com/joconno2/dsapi/raw/main/grey_dsapi_logo.png" width=50%>
 
 Dark Souls: Remastered API for Artificial Intelligence Research
 
