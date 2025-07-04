@@ -1,8 +1,9 @@
 # Dark Souls Agent
 Dark Souls Agent is a learning environment for Dark Souls: Remastered.
 # How To Run
-1. First, update the [Game Settings](#game-settings)
-2. Look at `ds_environment_example_random.py` for usage instructions.
+1. First, update the [Game Settings](#game-settings).
+2. Update your game and save paths in the `config.toml` file.
+3. Look at `ds_environment_example_random.py` for usage instructions.
 # Testing
 - Run the tests to make sure that the environment is set up correctly and working.
   - Tests for game screen being obtained properly (run `show_visual_feed.py`)
