@@ -1,0 +1,4 @@
+[paths]
+game_directory = "your/path/to/Dark Souls Remastered/"
+executable_file = "DarkSoulsRemastered.exe"
+game_save_directory = "your/path/to/NBGI/DARK SOULS REMASTERED/1638/"
