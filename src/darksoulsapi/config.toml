@@ -1,4 +1,4 @@
 [paths]
-game_directory = "your/path/to/Dark Souls Remastered/"
+game_directory = "C:/Program Files (x86)/Steam/steamapps/common/DARK SOULS REMASTERED/"
 executable_file = "DarkSoulsRemastered.exe"
-game_save_directory = "your/path/to/NBGI/DARK SOULS REMASTERED/1638/"
+game_save_directory = "C:/Users/username/Documents/NBGI/DARK SOULS REMASTERED/1638/"

@@ -6,17 +6,36 @@ from pathlib import Path
 import shutil
 import tomllib
 
-_current_dir = Path(__file__).parent
-_config_path = _current_dir / "config.toml"
+_user_save_directory = None
 
-with open(_config_path, "rb") as f:
-    config = tomllib.load(f)
+def _get_save_directory():
+    """Get the save directory from user setting or config file."""
+    global _user_save_directory
+    if _user_save_directory is not None:
+        return _user_save_directory
+    
+    # Fall back to config file
+    _current_dir = Path(__file__).parent
+    _config_path = _current_dir / "config.toml"
+    
+    with open(_config_path, "rb") as f:
+        config = tomllib.load(f)
+    
+    return Path.home() / config["paths"]["game_save_directory"]
 
-home_path = Path.home()
+def set_save_directory(save_directory):
+    """
+    Set the game save directory.
+    
+    Args:
+        save_directory (str or Path): Path to your Dark Souls save directory
+    """
+    global _user_save_directory
+    _user_save_directory = Path(save_directory)
 
-game_save_directory = home_path / config["paths"]["game_save_directory"]
-
-save_file_location = _current_dir / "Dark Souls Save Files"
+# Package save files location
+_package_dir = Path(__file__).parent
+save_file_location = _package_dir / "Dark Souls Save Files"
 
 save_files = {
     "newgame": "Beginning",
@@ -37,10 +56,12 @@ current_save = save_file_location / save_files["bell_gargoyles"] / "DRAKS0005.sl
 # deletes the 'DRAKS0005.sl2' file in the '1638' folder
 # There may be other save files generated later
 def clear_save():
-    delete_files_in_folder(game_save_directory)
+    save_dir = _get_save_directory()
+    delete_files_in_folder(save_dir)
 
 def load_save():
-    shutil.copy(current_save, game_save_directory)
+    save_dir = _get_save_directory()
+    shutil.copy(current_save, save_dir)
 
 def list_files_in_folder(folder_path): 
     return [f for f in folder_path.glob("*") if f.is_file()]

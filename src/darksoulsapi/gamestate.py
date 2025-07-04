@@ -19,10 +19,23 @@ from . import game_save
 _current_dir = Path(__file__).parent
 _templates_dir = _current_dir / 'templates'
 
-# Functions for interacting with the game window
-# and sending inputs to the game
 class GameState:
-    def __init__(self):
+    def __init__(self, game_directory=None, executable_file=None, save_directory=None):
+        """
+        Initialize the GameState.
+        
+        Args:
+            game_directory (str or Path, optional): Path to Dark Souls Remastered installation
+            executable_file (str, optional): Name of the executable file
+            save_directory (str or Path, optional): Path to Dark Souls save directory
+        """
+        self.game_directory = game_directory
+        self.executable_file = executable_file
+        
+        # Set the save directory if provided
+        if save_directory is not None:
+            game_save.set_save_directory(save_directory)
+        
         # Initialize the action space
         action_keys = [
             "w", "a", "s", "d", "attack", "backstep", "heal", "strong-attack", "front-roll", "left-roll", "back-roll", "right-roll"
@@ -78,7 +91,11 @@ class GameState:
         return pixel_input
     
     def start_program(self):
-        start_game.start_game(start_delay=30)
+        start_game.start_game(
+            game_directory=self.game_directory,
+            executable_file=self.executable_file,
+            start_delay=30
+        )
 
     def is_terminal_state(self):
         try:
